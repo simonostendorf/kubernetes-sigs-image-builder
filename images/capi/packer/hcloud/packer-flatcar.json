@@ -8,7 +8,7 @@
       "snapshot_labels": {
         "build_date": "{{isotime \"2006-01-02T15-04-05Z\" }}",
         "build_timestamp": "{{user `build_timestamp`}}",
-        "caph-image-name": "cluster-api-{{user `build_name`}}-{{user `flatcar_channel`}}-{{user `flatcar_version`}}-{{user `kubernetes_semver`}}-{{user `build_timestamp`}}",
+        "caph-image-name": "{{user `image_name`}}",
         "creationTimestamp": "{{isotime \"2006-01-02T15-04-05Z\"}}",
         "distribution": "{{user `distribution`}}",
         "distribution_release": "{{user `distribution_release`}}",
@@ -16,7 +16,7 @@
         "image_builder_version": "{{user `ib_version`}}",
         "kubernetes_version": "{{user `kubernetes_semver`}}"
       },
-      "snapshot_name": "cluster-api-{{user `build_name`}}-{{user `flatcar_channel`}}-{{user `flatcar_version`}}-{{user `kubernetes_semver`}}-{{user `build_timestamp`}}",
+      "snapshot_name": "{{user `image_name`}}",
       "ssh_username": "{{user `ssh_username`}}",
       "token": "{{user `hcloud_token`}}",
       "type": "hcloud"
@@ -112,7 +112,7 @@
       "use_sudo": true,
       "vars_file": "{{user `goss_vars_file`}}",
       "vars_inline": {
-        "ARCH": "amd64",
+        "ARCH": "{{user `goss_arch`}}",
         "OS": "{{user `distribution` | lower}}",
         "OS_VERSION": "{{user `distribution_version` | lower}}",
         "PROVIDER": "hcloud",
@@ -138,10 +138,10 @@
     "build_name": null,
     "build_timestamp": "{{timestamp}}",
     "containerd_sha256": null,
-    "containerd_url": "https://github.com/containerd/containerd/releases/download/v{{user `containerd_version`}}/cri-containerd-cni-{{user `containerd_version`}}-linux-amd64.tar.gz",
+    "containerd_url": "https://github.com/containerd/containerd/releases/download/v{{user `containerd_version`}}/cri-containerd-cni-{{user `containerd_version`}}-linux-{{user `os_arch`}}.tar.gz",
     "containerd_version": null,
     "containerd_wasm_shims_runtimes": null,
-    "crictl_url": "https://github.com/kubernetes-sigs/cri-tools/releases/download/v{{user `crictl_version`}}/crictl-v{{user `crictl_version`}}-linux-amd64.tar.gz",
+    "crictl_url": "https://github.com/kubernetes-sigs/cri-tools/releases/download/v{{user `crictl_version`}}/crictl-v{{user `crictl_version`}}-linux-{{user `os_arch`}}.tar.gz",
     "crictl_version": null,
     "direct_shared_gallery_image_id": "",
     "distribution": null,
